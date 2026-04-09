@@ -1,0 +1,32 @@
+server:
+  port: 8000
+
+ldap:
+  url: "ldaps://dc.mycompany.example.com:636" # ldap://dc.mycompany.example.com:389
+  base_dn: "OU=users,DC=mycompany,DC=example,DC=com"
+  bind_dn: "CN=read-ad-service-acc,OU=Autousers,DC=mycompany,DC=example,DC=com"
+  bind_password: "supersecret-password"
+  user_filter: "(sAMAccountName=%s)"
+  insecure_skip_verify: true
+
+redis:
+  addr: "redis:6379"
+  password: ""
+  db: 0
+
+session:
+  ttl_minutes: 60
+  cookie_name: "AUTH_SESSION"
+  secure: false
+
+auth:
+  allowed_users:
+    - user1
+    - user2
+    - admin
+
+
+logging:
+  format: "plain"   # plain | json
+  output: ["stdout", "file"]  # stdout, file
+  file_path: "/var/log/auth-service.log"
